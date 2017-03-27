@@ -79,7 +79,6 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
         let memedImage = generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activity, success, items, error in
-            self.saveMeme()
             self.dismiss(animated: true, completion: nil)
         }
         present(activityController, animated: true, completion: nil)
@@ -139,31 +138,13 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
-    func saveMeme() {
-        //Create the meme
-        let memedImage = generateMemedImage()
-        
-        let meme = Meme(topText: topMemeTextField.text!, bottomText: bottomMemeTextField.text!,
-                        image: imagePickerView.image!, memedImage: memedImage)
-        
-        // Add it to the memes array in the Application Delegate
-        (UIApplication.shared.delegate as!
-            AppDelegate).memes.append(meme)
-    }
-    
-    // Create a UIImage that combines the Image View and the Textfields
     func generateMemedImage() -> UIImage {
-        // Hide toolbar and navbar
         navBar.isHidden = true
         toolBar.isHidden = true
-        
-        // Render view to an image
         UIGraphicsBeginImageContext(view.frame.size)
         view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
-        // Show toolbar and navbar
         navBar.isHidden = false
         toolBar.isHidden = false
         
