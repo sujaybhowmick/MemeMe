@@ -33,15 +33,16 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
     
     
     override func viewDidLoad() {
-        topMemeTextField.defaultTextAttributes = memeTextAttributes
-        topMemeTextField.text = "TOP"
-        topMemeTextField.textAlignment = .center
-        topMemeTextField.delegate = self
-        
-        bottomMemeTextField.defaultTextAttributes = memeTextAttributes
-        bottomMemeTextField.text = "BOTTOM"
-        bottomMemeTextField.textAlignment = .center
-        bottomMemeTextField.delegate = self
+        configure(topMemeTextField, defaultAttributes: memeTextAttributes, defaultText: "TOP", textAlignment: .center)
+        configure(bottomMemeTextField, defaultAttributes: memeTextAttributes, defaultText: "BOTTOM", textAlignment: .center)
+    }
+    
+    func configure(_ textField: UITextField, defaultAttributes: [String: Any], defaultText: String,
+                   textAlignment: NSTextAlignment){
+        textField.defaultTextAttributes = defaultAttributes
+        textField.text = defaultText
+        textField.textAlignment = textAlignment
+        textField.delegate = self
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -50,8 +51,6 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        topMemeTextField.delegate = self
-        bottomMemeTextField.delegate = self
         self.cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
         if imagePickerView.image == nil {
             shareButton.isEnabled = false
@@ -68,7 +67,6 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBAction func pickImageFromCamera(_ sender: Any) {
         pickAnImage(sender, .camera)
-
     }
     
     @IBAction func pickImageFromAlbum(_ sender: Any) {
@@ -79,9 +77,22 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
         let memedImage = generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activity, success, items, error in
+            self.saveMeme()
             self.dismiss(animated: true, completion: nil)
         }
         present(activityController, animated: true, completion: nil)
+    }
+    
+    func saveMeme() {
+        //Create the meme
+        let memedImage = generateMemedImage()
+        
+        let meme = Meme(topText: topMemeTextField.text!, bottomText: bottomMemeTextField.text!,
+                        image: imagePickerView.image!, memedImage: memedImage)
+        
+        // Add it to the memes array in the Application Delegate
+        (UIApplication.shared.delegate as!
+            AppDelegate).memes.append(meme)
     }
     
     @IBAction func resetViewController(_ sender: AnyObject) {
@@ -111,13 +122,13 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
     
     func keyboardWillShow(_ notification:Notification) {
         if bottomMemeTextField.isFirstResponder {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = getKeyboardHeight(notification) * (-1)
         }
     }
     
     func keyboardWillHide(_ notification:Notification) {
         if bottomMemeTextField.isFirstResponder {
-            view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y = 0
         }
     }
     
