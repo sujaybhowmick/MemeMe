@@ -33,7 +33,6 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
     
     
     override func viewDidLoad() {
-        showHideTextFields(hide: true)
         topMemeTextField.defaultTextAttributes = memeTextAttributes
         topMemeTextField.text = "TOP"
         topMemeTextField.textAlignment = .center
@@ -69,6 +68,7 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBAction func pickImageFromCamera(_ sender: Any) {
         pickAnImage(sender, .camera)
+
     }
     
     @IBAction func pickImageFromAlbum(_ sender: Any) {
@@ -97,15 +97,10 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
         imagePickerController.delegate = self
         imagePickerController.sourceType = sourceType
         self.present(imagePickerController, animated: true, completion: nil)
-        showHideTextFields(hide: false)
         
     }
     
-    func showHideTextFields(hide: Bool){
-        self.topMemeTextField.isHidden = hide
-        self.bottomMemeTextField.isHidden = hide
-    }
-    
+
     func validateTextField(textField: UITextField) -> Bool {
         if textField.hasText {
             return (textField.text?.lengthOfBytes(using: String.Encoding.utf8))! <= 45
