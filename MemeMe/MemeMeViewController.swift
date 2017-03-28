@@ -77,6 +77,9 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
         let memedImage = generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activity, success, items, error in
+            if !success {
+                return
+            }
             self.saveMeme()
             self.dismiss(animated: true, completion: nil)
         }
