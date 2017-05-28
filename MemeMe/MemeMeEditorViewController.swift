@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
+class MemeMeEditorViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var imagePickerView: UIImageView!
     
@@ -82,6 +82,7 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
             }
             self.saveMeme()
             self.dismiss(animated: true, completion: nil)
+            
         }
         present(activityController, animated: true, completion: nil)
     }
@@ -94,8 +95,7 @@ class MemeMeViewController: UIViewController, UINavigationControllerDelegate {
                         image: imagePickerView.image!, memedImage: memedImage)
         
         // Add it to the memes array in the Application Delegate
-        (UIApplication.shared.delegate as!
-            AppDelegate).memes.append(meme)
+        MemeCollection.add(meme)
     }
     
     @IBAction func resetViewController(_ sender: AnyObject) {

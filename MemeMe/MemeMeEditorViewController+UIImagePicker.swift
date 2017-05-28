@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension MemeMeViewController: UIImagePickerControllerDelegate {
+extension MemeMeEditorViewController: UIImagePickerControllerDelegate {
  
     struct Alerts {
         static let DismissAlert = "Dismiss"

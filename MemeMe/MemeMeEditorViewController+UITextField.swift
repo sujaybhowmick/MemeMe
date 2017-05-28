@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension MemeMeViewController: UITextFieldDelegate {
+extension MemeMeEditorViewController: UITextFieldDelegate {
     
     /** TextField functions **/
     
