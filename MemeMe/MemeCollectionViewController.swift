@@ -12,7 +12,6 @@ import UIKit
 
 class MemeCollectionViewController: UICollectionViewController {
     
-    
     @IBOutlet weak var flowlayout: UICollectionViewFlowLayout!
     
     override func viewDidLoad() {
@@ -26,6 +25,7 @@ class MemeCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        collectionView!.reloadData()
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
