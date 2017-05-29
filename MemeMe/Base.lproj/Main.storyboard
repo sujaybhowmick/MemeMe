@@ -62,7 +62,7 @@
             </objects>
             <point key="canvasLocation" x="-1059" y="237"/>
         </scene>
-        <!--Meme Collection View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="HJm-e1-mcu">
             <objects>
                 <collectionViewController id="IkN-ea-m2Y" customClass="MemeCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -105,7 +105,7 @@
                             <outlet property="delegate" destination="IkN-ea-m2Y" id="eVa-Lr-vHh"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="6Fv-BY-THk"/>
+                    <navigationItem key="navigationItem" title="Sent Memes" id="6Fv-BY-THk"/>
                     <connections>
                         <outlet property="flowlayout" destination="itV-E1-6EJ" id="8jL-dY-icf"/>
                     </connections>
@@ -114,7 +114,7 @@
             </objects>
             <point key="canvasLocation" x="-346.39999999999998" y="235.23238380809596"/>
         </scene>
-        <!--Meme Table View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="Bxn-E9-zMd">
             <objects>
                 <tableViewController id="SDg-6R-ybU" customClass="MemeTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -151,7 +151,7 @@
                             <outlet property="delegate" destination="SDg-6R-ybU" id="3qW-on-w20"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bQb-ak-vcx">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="bQb-ak-vcx">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qTo-Aa-Oyw">
                             <connections>
                                 <action selector="addMeme:" destination="SDg-6R-ybU" id="aQY-mt-lSq"/>
