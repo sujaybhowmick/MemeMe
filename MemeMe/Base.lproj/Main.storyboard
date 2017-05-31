@@ -84,7 +84,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="177" height="134"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rdz-TA-x03">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rdz-TA-x03">
                                             <rect key="frame" x="10" y="10" width="157" height="114"/>
                                         </imageView>
                                     </subviews>
@@ -105,7 +105,13 @@
                             <outlet property="delegate" destination="IkN-ea-m2Y" id="eVa-Lr-vHh"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Sent Memes" id="6Fv-BY-THk"/>
+                    <navigationItem key="navigationItem" title="Sent Memes" id="6Fv-BY-THk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="BLa-oc-6ti">
+                            <connections>
+                                <action selector="addMeme:" destination="IkN-ea-m2Y" id="j4Y-UW-jdH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="flowlayout" destination="itV-E1-6EJ" id="8jL-dY-icf"/>
                     </connections>
@@ -175,12 +181,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOA-BK-en3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oOA-BK-en3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oOA-BK-en3" secondAttribute="trailing" id="4LM-MV-beK"/>
+                            <constraint firstItem="oOA-BK-en3" firstAttribute="top" secondItem="Lj9-Ij-5x4" secondAttribute="top" id="IDd-Hb-zGY"/>
+                            <constraint firstItem="ZVa-b1-mgz" firstAttribute="top" secondItem="oOA-BK-en3" secondAttribute="bottom" id="Igf-W1-kgY"/>
+                            <constraint firstItem="oOA-BK-en3" firstAttribute="leading" secondItem="Lj9-Ij-5x4" secondAttribute="leading" id="QhF-cx-WlJ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="oOA-BK-en3" id="eSs-vf-NSq"/>

@@ -27,6 +27,13 @@ class MemeCollectionViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         collectionView!.reloadData()
     }
+    
+    
+    @IBAction func addMeme(_ sender: Any) {
+        var controller: MemeMeEditorViewController
+        controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeMeEditorViewController") as! MemeMeEditorViewController
+        self.present(controller, animated: true, completion: nil)
+    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return MemeCollection.count()

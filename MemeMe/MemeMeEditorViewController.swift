@@ -33,6 +33,7 @@ class MemeMeEditorViewController: UIViewController, UINavigationControllerDelega
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         configure(topMemeTextField, defaultAttributes: memeTextAttributes, defaultText: "TOP", textAlignment: .center)
         configure(bottomMemeTextField, defaultAttributes: memeTextAttributes, defaultText: "BOTTOM", textAlignment: .center)
     }
@@ -99,10 +100,8 @@ class MemeMeEditorViewController: UIViewController, UINavigationControllerDelega
     }
     
     @IBAction func resetViewController(_ sender: AnyObject) {
-        imagePickerView.image = nil
-        shareButton.isEnabled = false
-        topMemeTextField.text = "TOP"
-        bottomMemeTextField.text = "BOTTOM"
+        dismiss(animated: true, completion: nil)
+        
     }
     
     func pickAnImage(_ sender: Any, _ sourceType: UIImagePickerControllerSourceType){
