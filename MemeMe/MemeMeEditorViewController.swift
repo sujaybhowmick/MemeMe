@@ -152,18 +152,20 @@ class MemeMeEditorViewController: UIViewController, UINavigationControllerDelega
     }
     
     func generateMemedImage() -> UIImage {
-        navBar.isHidden = true
-        toolBar.isHidden = true
+        showBars(true)
         UIGraphicsBeginImageContext(view.frame.size)
         view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        navBar.isHidden = false
-        toolBar.isHidden = false
+        showBars(false)
         
         return memedImage
     }
 
+    func showBars(_ hidden: Bool){
+        navBar.isHidden = hidden
+        toolBar.isHidden = hidden
+    }
 
 }
 
